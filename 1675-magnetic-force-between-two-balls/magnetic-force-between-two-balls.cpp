@@ -18,7 +18,7 @@ public:
         sort(position.begin(), position.end());
         int n = position.size();
         int low = 1;
-        int high = position[n - 1];
+        int high = position[n - 1] - position[0];
         
         while(low <= high) {
             int mid = low + (high - low) / 2;
