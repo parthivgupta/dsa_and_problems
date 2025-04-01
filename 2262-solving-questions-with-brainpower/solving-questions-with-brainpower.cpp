@@ -12,7 +12,19 @@ public:
     }
     long long mostPoints(vector<vector<int>>& questions) {
         int n = questions.size();
-        vector<long long>dp(n, -1);
-        return solve(questions, 0, dp);
+        // vector<long long>dp(n, -1);
+        // return solve(questions, 0, dp);
+
+        // tabulation
+          vector<long long> dp(n + 1, 0);
+        for (int i = n - 1; i >= 0; i--) {
+            long long skip = dp[i + 1];
+            long long choose = questions[i][0];
+            if (i + questions[i][1] + 1 <= n) {
+                choose += dp[i + questions[i][1] + 1];
+            }
+            dp[i] = max(skip, choose);
+        }
+        return dp[0];
     }
 };
