@@ -1,27 +1,25 @@
 class Solution {
 public:
-    bool isSymmetry(string s) {
-        if(s.size() % 2 == 1) return false;
-        int half = 0;
+    bool isSymmetry(const string& s) {
+        int len = s.size();
+        if (len % 2 != 0) return false;
 
-        for(int i = 0; i < s.size() / 2; i++) {
-            int a = s[i] - '0';
-            half += a; 
+        int mid = len / 2, sum1 = 0, sum2 = 0;
+        for (int i = 0; i < mid; ++i) {
+            sum1 += s[i] - '0';
+            sum2 += s[i + mid] - '0';
         }
-        int secondHalf = 0;
-        for(int i = s.size() / 2; i < s.size(); i++) {
-            int a = s[i] - '0';
-            secondHalf += a; 
-        }
-        return half == secondHalf;
-
+        return sum1 == sum2;
     }
 
     int countSymmetricIntegers(int low, int high) {
         int cnt = 0;
-        for(int i = low; i <= high; i++) {
-            string a = to_string(i);
-            if(isSymmetry(a)) cnt++;
+        for (int i = low; i <= high; ++i) {
+            int len = (int)log10(i) + 1;
+            if (len % 2 == 0) {
+                string s = to_string(i);
+                if (isSymmetry(s)) cnt++;
+            }
         }
         return cnt;
     }
