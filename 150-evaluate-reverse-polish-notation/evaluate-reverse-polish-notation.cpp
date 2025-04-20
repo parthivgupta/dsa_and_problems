@@ -1,7 +1,7 @@
 class Solution {
 public:
     int evalRPN(vector<string>& s) {
-        stack<int> st;  // Declare a stack to store intermediate results
+        stack<int> st; 
         int n = s.size();
         for(int i = 0; i < n; i++) {
             string ch = s[i];
@@ -30,10 +30,10 @@ public:
                 st.pop();
                 st.push(b / a);
             } else {
-                // If it's a number, convert it from string to int and push to the stack
+                
                 st.push(stoi(ch));
             }
         }
-        return st.top();  // The result will be at the top of the stack
+        return st.top();  
     }
 };
